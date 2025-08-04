@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #ffffff;
+  color: #111827;
+  margin: 0;
+  padding: 0;
+  overflow-y: scroll; /* Changed: From auto to scroll for always allowing scroll (even if no overflow), while hiding bar */
+}
+
+/* Changed: Reinforced hiding with !important for reliability across browsers */
+body::-webkit-scrollbar {
+  display: none !important; /* For Chrome, Safari */
+}
+
+body {
+  -ms-overflow-style: none !important; /* For IE/Edge */
+  scrollbar-width: none !important; /* For Firefox */
+}
+
+a {
+  text-decoration: none;
+}
+
+header a {
+  margin-right: 2rem;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+#root {
+  height: 100%;
+}

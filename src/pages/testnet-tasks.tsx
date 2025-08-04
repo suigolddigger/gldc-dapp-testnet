@@ -22,7 +22,7 @@ const TestnetTasks = () => {
             4. Visit the <Anchor href="https://faucet.sui.io/" target="_blank" rel="noopener noreferrer" textColor="#3b82f6" hoverTextColor="#2563eb" textWeight="bold" d="inline">Sui faucet</Anchor> and redeem sui to your wallet.
           </Text>
           <Text textSize="body1" textColor="#111827" m={{ b: '1rem' }}>
-            5. Go to the <Anchor href="/faucet" target="_blank" rel="noopener noreferrer" textColor="#3b82f6" hoverTextColor="#2563eb" textWeight="bold" d="inline">GLDC faucet</Anchor> and redeem 1 testnet GLDC to your wallet.
+            5. Go to the <Anchor href="https://www.gldc.world/faucet" target="_blank" rel="noopener noreferrer" textColor="#3b82f6" hoverTextColor="#2563eb" textWeight="bold" d="inline">GLDC faucet</Anchor> and redeem 1 testnet GLDC to your wallet.
           </Text>
           <Text textSize="body1" textColor="#111827" m={{ b: '1rem' }}>
             6. Navigate to the <Anchor href="https://faucet.circle.com/" target="_blank" rel="noopener noreferrer" textColor="#3b82f6" hoverTextColor="#2563eb" textWeight="bold" d="inline">Circle faucet</Anchor>, select Sui testnet from the dropdown, and collect 10 testnet USDC to your wallet.

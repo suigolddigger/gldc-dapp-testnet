@@ -1,5 +1,4 @@
 import { Div, Text, Anchor } from 'atomize';
-import { Link } from 'react-router-dom';
 
 const TestnetTasks = () => {
   return (
@@ -58,6 +57,21 @@ const TestnetTasks = () => {
           <Text textSize="caption" textColor="#6b7280">
             *Users who complete testnet tasks will be eligible for prizes ranging from $1 to $250, paid in mainnet GLDC. This GLDC can be traded for USDC or any other cryptocurrencies at any time. Prizes are not guaranteed to all users; only the first users to complete testnet tasks will be eligible, and once $2,000 in value has been claimed, no additional testnet prizes will be available.
           </Text>
+        </Div>
+        {/* Embedded YouTube Video: Responsive, centered, below tasks */}
+        <Div d="flex" justify="center" m={{ t: '2rem', b: '4rem' }}>
+          <Div pos="relative" w={{ xs: '100%', md: '90%' }} style={{ aspectRatio: '16 / 9' }}>
+            <iframe
+              style={{ position: 'absolute', top: 0, left: 0 }}
+              width="100%"
+              height="100%"
+              src="https://www.youtube.com/embed/546EgtFKvz4?controls=1&rel=0&modestbranding=1&showinfo=0"
+              title="GLDC Testnet Demo Video"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            />
+          </Div>
         </Div>
       </Div>
     </Div>

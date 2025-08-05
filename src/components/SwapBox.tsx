@@ -89,8 +89,8 @@ const SwapBox = ({
         backgroundPosition: 'center' 
       }}
     >
-      <Div w="100%" maxW="32rem" m={{ t: '0' }} textAlign="center">
-        <Div pos="relative" bg="white" p={{ x: '1.5rem', t: '2.5rem', b: '1.5rem' }} rounded="xl" shadow="3" h="auto" m={{ t: '0' }}>
+      <Div w="100%" maxW={{ xs: '90%', md: '32rem' }} m={{ t: '0' }} textAlign="center">
+        <Div pos="relative" bg="white" p={{ x: { xs: '1rem', md: '1.5rem' }, t: { xs: '1.5rem', md: '2.5rem' }, b: { xs: '1rem', md: '1.5rem' } }} rounded="xl" shadow="3" h="auto" m={{ t: '0' }}>
           {error && <Text textColor="danger700" textSize="title" textAlign="center" m={{ b: '1rem' }}>{error}</Text>}
           {/* Always show the boxes */}
           <>
@@ -100,8 +100,8 @@ const SwapBox = ({
                 <Text textColor="#6b7280" textSize="caption">Send</Text>
                 <Text textColor="#6b7280" textSize="caption">Balance: {inputBalance}</Text>
               </Div>
-              <Div d="flex" justify="space-between" align="center" w="100%" style={{ boxSizing: 'border-box' }}>
-                <Div flex="1 1 auto" style={{ minWidth: 0 }}>
+              <Div d="flex" justify="space-between" align="center" w="100%" style={{ boxSizing: 'border-box' }} minH={{ xs: '2rem', md: '2.5rem' }}>
+                <Div d="flex" align="center" flex="1 1 auto" style={{ minWidth: 0 }}>
                   <Input
                     placeholder="0.0"
                     value={inputAmount}
@@ -115,23 +115,24 @@ const SwapBox = ({
                     outline="none"
                     appearance="none"
                     background="transparent"
-                    textSize="display1"
+                    textSize={{ xs: 'heading', md: 'display1' }}
+                    textColor="#111827"
                     w="100%"
                     p="0"
-                    style={{ outline: 'none', border: 'none', boxSizing: 'border-box' }}
+                    style={{ outline: 'none', border: 'none', boxSizing: 'border-box', lineHeight: '1' }}
                   />
                 </Div>
-                <Div d="flex" align="center" bg="#F3F4F6" p={{ x: '0.75rem', y: '0.5rem' }} rounded="md" style={{ boxSizing: 'border-box' }}>
+                <Div d="flex" align="center" bg="#F3F4F6" p={{ x: '0.75rem', y: '0.5rem' }} rounded="md" style={{ boxSizing: 'border-box' }} flexShrink={0} minW="120px">
                   <Image src={inputLogo} w="30px" h="30px" m={{ r: '0.5rem' }} />
                   <Text textSize="subheader" textWeight="500" textColor="#000">{inputSymbol}</Text>
                 </Div>
               </Div>
-              <Text textColor="#6b7280" textSize="subheader" textAlign="left">${inputUsd.toFixed(2)}</Text>
+              <Text textColor="#6b7280" textSize={{ xs: 'body', md: 'subheader' }} textAlign="left">${inputUsd.toFixed(2)}</Text>
             </Div>
 
             {/* Switch Arrow - Centered and larger */}
             <Div d="flex" justify="center" align="center" m={{ y: '0.5rem' }}>
-              <Icon name="DownArrow" size="40px" color="#6b7280" cursor="pointer" onClick={() => setIsGldcToUsdc(!isGldcToUsdc)} />
+              <Icon name="DownArrow" size={{ xs: '30px', md: '40px' }} color="#6b7280" cursor="pointer" onClick={() => setIsGldcToUsdc(!isGldcToUsdc)} />
             </Div>
 
             {/* Receive Box */}
@@ -140,18 +141,18 @@ const SwapBox = ({
                 <Text textColor="#6b7280" textSize="caption">Receive</Text>
                 <Text textColor="#6b7280" textSize="caption">Balance: {outputBalance}</Text>
               </Div>
-              <Div d="flex" justify="space-between" align="center" w="100%" style={{ boxSizing: 'border-box' }}>
-                <Div flex="1 1 auto" style={{ minWidth: 0 }}>
-                  <Text textSize="display1" textColor="#111827">
+              <Div d="flex" justify="space-between" align="center" w="100%" style={{ boxSizing: 'border-box' }} minH={{ xs: '2rem', md: '2.5rem' }}>
+                <Div d="flex" align="center" flex="1 1 auto" style={{ minWidth: 0 }}>
+                  <Text textSize={{ xs: 'heading', md: 'display1' }} textColor="#111827" style={{ lineHeight: '1' }}>
                     {outputAmount || '0.0'}
                   </Text>
                 </Div>
-                <Div d="flex" align="center" bg="#F3F4F6" p={{ x: '0.75rem', y: '0.5rem' }} rounded="md" style={{ boxSizing: 'border-box' }}>
+                <Div d="flex" align="center" bg="#F3F4F6" p={{ x: '0.75rem', y: '0.5rem' }} rounded="md" style={{ boxSizing: 'border-box' }} flexShrink={0} minW="120px">
                   <Image src={outputLogo} w="30px" h="30px" m={{ r: '0.5rem' }} />
                   <Text textSize="subheader" textWeight="500" textColor="#000">{outputSymbol}</Text>
                 </Div>
               </Div>
-              <Text textColor="#6b7280" textSize="subheader" textAlign="left">${isNaN(outputUsd) ? '0.00' : outputUsd.toFixed(2)}</Text>
+              <Text textColor="#6b7280" textSize={{ xs: 'body', md: 'subheader' }} textAlign="left">${isNaN(outputUsd) ? '0.00' : outputUsd.toFixed(2)}</Text>
             </Div>
           </>
 

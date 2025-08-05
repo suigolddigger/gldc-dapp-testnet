@@ -41,7 +41,7 @@ const Home = () => {
   }, [showText]);
 
   return (
-    <Div bg="white" p={{ x: { xs: '2rem', md: '4rem' }, y: '4rem' }}>
+    <Div bg="white" p={{ x: { xs: '1rem', md: '2rem' }, y: { xs: '2rem', md: '4rem' } }}>
       {/* Hero Section: Background image, bold statements, side-by-side image without overflow */}
       <Div
         d="flex"
@@ -53,17 +53,17 @@ const Home = () => {
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
-        p="4rem"
+        p={{ xs: '2rem', md: '4rem' }}
         rounded="xl"
         shadow="3"
-        m={{ b: '12rem' }}
+        m={{ b: { xs: '6rem', md: '12rem' } }}
       >
         <Div w={{ xs: '100%', md: '50%' }} p={{ r: { md: '2rem' } }}>
-          <Text tag="h1" textSize="display3" textColor="#111827" m={{ b: '1rem' }} textWeight="700">
+          <Text tag="h1" textSize={{ xs: 'display2', md: 'display3' }} textColor="#111827" m={{ b: '1rem' }} textWeight="700">
             Revolutionize Gold Ownership
           </Text>
           {/* Animated subtitle with slower sliding banner effect and fade */}
-          <Div pos="relative" h="3rem" m={{ b: '2rem' }} overflow="hidden">
+          <Div pos="relative" h={{ xs: '4rem', md: '3rem' }} m={{ b: '2rem' }} overflow="hidden">
             <Div
               ref={wrapper1Ref}
               pos="absolute"
@@ -76,12 +76,22 @@ const Home = () => {
                 transition: 'transform 2s ease-in-out, opacity 2s ease-in-out',
               }}
             >
-              <Text
-                textSize="title"
-                textColor="#6b7280"
-              >
-                GLDC is fractional gold on chain, built for Sui network.
-              </Text>
+              <Div d="flex" flexDir={{ xs: 'column', md: 'row' }} align={{ xs: 'flex-start', md: 'flex-start' }} m="0" textAlign={{ xs: 'left', md: 'left' }}>
+                <Text
+                  textSize={{ xs: 'subheader', md: 'title' }}
+                  textColor="#6b7280"
+                  m={{ b: { xs: '0', md: '0' } }}
+                >
+                  GLDC is fractional gold on chain,
+                </Text>
+                <Text
+                  textSize={{ xs: 'subheader', md: 'title' }}
+                  textColor="#6b7280"
+                  m={{ l: { md: '0.25rem' }, t: { xs: '0', md: '0' } }}
+                >
+                  built for Sui network.
+                </Text>
+              </Div>
             </Div>
             <Div
               ref={wrapper2Ref}
@@ -95,32 +105,54 @@ const Home = () => {
                 transition: 'transform 2s ease-in-out, opacity 2s ease-in-out',
               }}
             >
-              <Text
-                textSize="title"
-                textColor="#6b7280"
-                d="flex"
-                align="center"
+              <Div 
+                d="flex" 
+                flexDir={{ xs: 'column', md: 'row' }} 
+                align={{ xs: 'flex-start', md: 'flex-start' }} 
+                textAlign={{ xs: 'left', md: 'left' }}
+                m="0"
               >
-                <Image src="/gldc.png" w="auto" h="1.3em" m={{ r: '0.25rem' }} />
-                is fractional gold on chain, built for
-                <Image src="/suilogo.png" w="auto" h="1.3em" m={{ l: '0.25rem', r: '0.25rem' }} />
-                network.
-              </Text>
+                <Div d="flex" align="center" justify={{ xs: 'flex-start', md: 'flex-start' }} m={{ b: { xs: '0', md: '0' } }}>
+                  <Image src="/gldc.png" w="auto" h={{ xs: '1em', md: '1.3em' }} m={{ r: '0.25rem' }} />
+                  <Text
+                    textSize={{ xs: 'subheader', md: 'title' }}
+                    textColor="#6b7280"
+                  >
+                    is fractional gold on chain,
+                  </Text>
+                </Div>
+                <Div d="flex" align="center" justify={{ xs: 'flex-start', md: 'flex-start' }} m={{ t: { xs: '0', md: '0' }, l: { md: '0.25rem' } }}>
+                  <Text
+                    textSize={{ xs: 'subheader', md: 'title' }}
+                    textColor="#6b7280"
+                    m={{ r: '0.25rem' }}
+                  >
+                    built for
+                  </Text>
+                  <Image src="/suilogo.png" w="auto" h={{ xs: '1em', md: '1.3em' }} m={{ r: '0.25rem' }} />
+                  <Text
+                    textSize={{ xs: 'subheader', md: 'title' }}
+                    textColor="#6b7280"
+                  >
+                    network.
+                  </Text>
+                </Div>
+              </Div>
             </Div>
           </Div>
           <Link to="/testnet-tasks">
-            <Button bg="#60a5fa" textColor="#ffffff" p={{ x: '2rem', y: '1rem' }} rounded="lg" shadow="3" hoverShadow="4" transition>
+            <Button bg="#60a5fa" textColor="#ffffff" p={{ x: { xs: '1rem', md: '2rem' }, y: '1rem' }} rounded="lg" shadow="3" hoverShadow="4" transition w={{ xs: '100%', md: 'auto' }} minH="44px">
               Start Now
             </Button>
           </Link>
         </Div>
-        <Div w={{ xs: '100%', md: '50%' }} m={{ t: { xs: '2rem', md: '0' } }}>
-          <Image src="/Pamp.jpeg" w="100%" h="auto" rounded="lg" shadow="2" />
+        <Div w={{ xs: '100%', md: '50%' }} m={{ t: { xs: '2rem', md: '0' } }} d="flex" justify="center">
+          <Image src="/Pamp.jpeg" w={{ xs: '80%', md: '100%' }} h="auto" rounded="lg" shadow="2" maxW={{ xs: '300px', md: 'none' }} />
         </Div>
       </Div>
 
       {/* Embedded YouTube Video: Responsive, centered, seamless playback with sound enabled, full controls (progress bar, volume, etc.), minimal branding */}
-      <Div d="flex" justify="center" m={{ b: '4rem' }}>
+      <Div d="flex" justify="center" m={{ b: { xs: '2rem', md: '4rem' } }}>
         <Div pos="relative" w={{ xs: '100%', md: '70%' }} style={{ aspectRatio: '16 / 9' }}>
           <iframe
             style={{ position: 'absolute', top: 0, left: 0 }}

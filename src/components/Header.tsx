@@ -45,63 +45,115 @@ const Header = () => {
   }, [client]);
 
   return (
-    <Div d="flex" justify="space-between" align="center" p={{ x: '4rem', y: '2rem' }} bg="white" borderBottom="1px solid #d1d5db">
-      <Div d="flex" align="center">
-        <Image src="/gldc.png" w="40px" h="40px" m={{ r: '1rem' }} bg="transparent" />
+    <Div
+      d="flex"
+      justify="space-between"
+      align="center"
+      p={{ x: { xs: '1rem', md: '4rem' }, y: { xs: '1rem', md: '2rem' } }}
+      bg="white"
+      borderBottom="1px solid #d1d5db"
+      flexDir={{ xs: 'column', md: 'row' }}
+    >
+      {/* Row 1: Logo + Title */}
+      <Div d="flex" align="center" m={{ b: { xs: '0.5rem', md: '0' } }} w={{ xs: '100%', md: 'auto' }} justify={{ xs: 'center', md: 'flex-start' }}>
+        <Image src="/gldc.png" w={{ xs: '30px', md: '40px' }} h={{ xs: '30px', md: '40px' }} m={{ r: { xs: '0.5rem', md: '1rem' } }} bg="transparent" />
         <Div d="flex" align="baseline">
-          <Text tag="h1" textSize="display1" textColor="#111827" m="0" style={{ fontFamily: 'DM Sans, sans-serif' }}>GLDC</Text>
-          {isSwapPage && <Text tag="h1" textSize="display1" textColor="#111827" m={{ l: '0.75rem' }} style={{ fontFamily: 'DM Sans, sans-serif', fontStyle: 'italic' }}>Testnet Vault</Text>}
+          <Text tag="h1" textSize={{ xs: 'title', md: 'display1' }} textColor="#111827" m="0" style={{ fontFamily: 'DM Sans, sans-serif' }}>GLDC</Text>
+          {isSwapPage && <Text tag="h1" textSize={{ xs: 'title', md: 'display1' }} textColor="#111827" m={{ l: { xs: '0.5rem', md: '0.75rem' } }} style={{ fontFamily: 'DM Sans, sans-serif', fontStyle: 'italic' }}>Testnet Vault</Text>}
         </Div>
       </Div>
-      <Div d="flex" align="baseline">
-        <a href={`https://testnet.suivision.xyz/object/0x32d2bcdee9eefa4259b2d8a96f5960b483ef1afb9c82afe499da74d48db47d26`} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
-          <Div d="flex" m={{ r: '2.5rem' }}>
-            <Text textSize="body" textColor="#111827" textWeight="600">
-              Gold Spot Price: {' '}
+      {/* Row 2 (mobile) / Integrated with Row 3 (desktop): Prices + Nav + Wallet */}
+      <Div 
+        d="flex" 
+        align="baseline" 
+        flexDir={{ xs: 'column', md: 'row' }} 
+        justify={{ xs: 'center', md: 'space-between' }} 
+        w={{ xs: '100%', md: 'auto' }} 
+        flexWrap={{ xs: 'wrap', md: 'nowrap' }}
+      >
+        {/* Prices Section - Left-aligned on desktop, centered on mobile */}
+        <Div 
+          d="flex" 
+          align="baseline" 
+          m={{ b: { xs: '0.5rem', md: '0' }, r: { md: '2rem' } }} 
+          flexWrap="wrap" 
+          justify={{ xs: 'center', md: 'flex-start' }}
+          textAlign={{ xs: 'center', md: 'left' }}
+          w={{ xs: '100%', md: 'auto' }}
+        >
+          <a href={`https://testnet.suivision.xyz/object/0x32d2bcdee9eefa4259b2d8a96f5960b483ef1afb9c82afe499da74d48db47d26`} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
+            <Div d="flex" align="baseline" m={{ r: { xs: '1rem', md: '1.5rem' } }}>
+              <Text textSize={{ xs: 'caption', md: 'body' }} textColor="#111827" textWeight="600">
+                1oz Gold Spot Price:&nbsp;$ {/* Space with &nbsp; */}
+              </Text>
+              <Text textSize={{ xs: 'caption', md: 'body' }} textColor="#111827" textWeight="400">
+                {spotPrice.toFixed(2)}
+              </Text>
+            </Div>
+          </a>
+          <Div d="flex" align="baseline">
+            <Text textSize={{ xs: 'caption', md: 'body' }} textColor="#111827" textWeight="600">
+              1 GLDC:&nbsp;$ {/* Space with &nbsp; */}
             </Text>
-            <Text textSize="body" textColor="#111827" textWeight="400">
-              ${spotPrice.toFixed(2)}
+            <Text textSize={{ xs: 'caption', md: 'body' }} textColor="#111827" textWeight="400">
+              {(spotPrice / 1000).toFixed(2)}
             </Text>
           </Div>
-        </a>
-        <Link to="/">
-          <Text textSize="title" textColor="#111827" hoverTextColor="#3b82f6" transition m={{ r: '2rem' }}>Home</Text>
-        </Link>
-        <Link to="/swap">
-          <Text textSize="title" textColor="#111827" hoverTextColor="#3b82f6" transition m={{ r: '2rem' }}>Swap</Text>
-        </Link>
-        <Link to="/faucet">
-          <Text textSize="title" textColor="#111827" hoverTextColor="#3b82f6" transition m={{ r: '2rem' }}>Faucet</Text>
-        </Link>
-        <Link to="/testnet-tasks"> {/* Added Testnet link */}
-          <Text textSize="title" textColor="#111827" hoverTextColor="#3b82f6" transition m={{ r: '2rem' }}>Testnet</Text>
-        </Link>
-        {account ? (
-          <Button
-            onClick={disconnect}
-            bg="#60a5fa"
-            textColor="white"
-            p={{ x: '1rem', y: '0.25rem' }}
-            rounded="md"
-            textSize="body"
-          >
-            {truncatedAddress} Disconnect
-          </Button>
-        ) : (
-          <ConnectModal
-            trigger={
-              <Button
-                bg="#60a5fa"
-                textColor="white"
-                p={{ x: '1rem', y: '0.25rem' }}
-                rounded="md"
-                textSize="body"
-              >
-                Connect Wallet
-              </Button>
-            }
-          />
-        )}
+        </Div>
+        {/* Nav Links + Wallet - Right-aligned on desktop, centered on mobile */}
+        <Div 
+          d="flex" 
+          align="baseline" 
+          flexWrap="wrap" 
+          justify={{ xs: 'center', md: 'flex-end' }}
+          textAlign={{ xs: 'center', md: 'right' }}
+          w={{ xs: '100%', md: 'auto' }}
+        >
+          <Link to="/">
+            <Text textSize={{ xs: 'title', md: 'title' }} textColor="#111827" hoverTextColor="#3b82f6" transition m={{ r: { xs: '1rem', md: '2rem' }, b: { xs: '0.5rem', md: '0' } }}>Home</Text>
+          </Link>
+          <Link to="/swap">
+            <Text textSize={{ xs: 'title', md: 'title' }} textColor="#111827" hoverTextColor="#3b82f6" transition m={{ r: { xs: '1rem', md: '2rem' }, b: { xs: '0.5rem', md: '0' } }}>Swap</Text>
+          </Link>
+          <Link to="/faucet">
+            <Text textSize={{ xs: 'title', md: 'title' }} textColor="#111827" hoverTextColor="#3b82f6" transition m={{ r: { xs: '1rem', md: '2rem' }, b: { xs: '0.5rem', md: '0' } }}>Faucet</Text>
+          </Link>
+          <Link to="/testnet-tasks">
+            <Text textSize={{ xs: 'title', md: 'title' }} textColor="#111827" hoverTextColor="#3b82f6" transition m={{ r: { xs: '1rem', md: '2rem' }, b: { xs: '0.5rem', md: '0' } }}>Testnet</Text>
+          </Link>
+          {account ? (
+            <Button
+              onClick={disconnect}
+              bg="#60a5fa"
+              textColor="white"
+              p={{ x: { xs: '0.5rem', md: '1rem' }, y: { xs: '0.25rem', md: '0.25rem' } }}
+              rounded="md"
+              textSize={{ xs: 'body', md: 'body' }}
+              w={{ xs: '100%', md: 'auto' }}
+              minH={{ xs: '36px', md: 'auto' }}
+              m={{ t: { xs: '0.5rem', md: '0' } }}
+            >
+              {truncatedAddress} Disconnect
+            </Button>
+          ) : (
+            <ConnectModal
+              trigger={
+                <Button
+                  bg="#60a5fa"
+                  textColor="white"
+                  p={{ x: { xs: '0.5rem', md: '1rem' }, y: { xs: '0.25rem', md: '0.25rem' } }}
+                  rounded="md"
+                  textSize={{ xs: 'body', md: 'body' }}
+                  w={{ xs: '100%', md: 'auto' }}
+                  minH={{ xs: '36px', md: 'auto' }}
+                  m={{ t: { xs: '0.5rem', md: '0' } }}
+                >
+                  Connect Wallet
+                </Button>
+              }
+            />
+          )}
+        </Div>
       </Div>
     </Div>
   );

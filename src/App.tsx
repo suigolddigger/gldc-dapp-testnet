@@ -9,6 +9,7 @@ import Home from './pages/home';
 import SwapPage from './pages/swap';
 import FaucetPage from './pages/faucet';
 import TestnetTasks from './pages/testnet-tasks'; // Added import for TestnetTasks
+import { Analytics } from '@vercel/analytics/react';
 import './app.css';
 
 const engine = new Styletron();
@@ -26,6 +27,7 @@ const App: React.FC = () => {
             <Route path="/testnet-tasks" element={<TestnetTasks />} /> {/* Added route for TestnetTasks */}
           </Routes>
           <Footer />
+          <Analytics />
         </Router>
       </Theme>
     </StyletronProvider>
